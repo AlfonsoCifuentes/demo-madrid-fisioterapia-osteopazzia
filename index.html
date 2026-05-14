@@ -3,551 +3,612 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Osteopazzia — Fisioterapia y Osteopatía en Madrid</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <title>Osteopazzia | Fisioterapia & Osteopatía en Madrid</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --green: #2E7D6A;
-      --green-light: #E8F5F0;
-      --white: #FFFFFF;
-      --text-dark: #1a2e28;
-      --text-muted: #4a6b62;
-      --transition: 0.3s ease;
+      --teal:    #2E7D6A;
+      --teal-dk: #1E5C4D;
+      --mint:    #E8F5F0;
+      --amber:   #F5A623;
+      --amber-dk:#D4891A;
+      --white:   #FFFFFF;
+      --dark:    #1A2E2A;
+      --grey:    #F7F7F7;
+      --text:    #2D3D38;
+      --muted:   #6B7C78;
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Open Sans', sans-serif;
-      color: var(--text-dark);
+      color: var(--text);
+      background: var(--white);
       line-height: 1.6;
-      overflow-x: hidden;
     }
 
-    /* NAV */
+    h1,h2,h3,h4 { font-family: 'Nunito', sans-serif; line-height: 1.2; }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ──────────── NAV ──────────── */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: rgba(255,255,255,0.97);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(255,255,255,0.95);
       backdrop-filter: blur(8px);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem 5%;
-      box-shadow: 0 2px 12px rgba(46,125,106,0.08);
+      border-bottom: 1px solid rgba(46,125,106,0.1);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
     }
 
     .nav-logo {
       font-family: 'Nunito', sans-serif;
-      font-weight: 800;
-      font-size: 1.4rem;
-      color: var(--green);
-      text-decoration: none;
+      font-weight: 900;
+      font-size: 1.5rem;
+      color: var(--teal);
       letter-spacing: -0.5px;
     }
 
-    .nav-logo span {
-      color: var(--text-dark);
-    }
+    .nav-logo span { color: var(--amber); }
 
     .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
+      display: flex; gap: 2rem; list-style: none;
     }
 
     .nav-links a {
-      font-family: 'Open Sans', sans-serif;
-      font-weight: 600;
-      font-size: 0.9rem;
-      color: var(--text-dark);
-      text-decoration: none;
-      transition: color var(--transition);
+      font-size: 0.9rem; font-weight: 600;
+      color: var(--text);
+      transition: color 0.2s;
     }
 
-    .nav-links a:hover { color: var(--green); }
+    .nav-links a:hover { color: var(--teal); }
 
     .nav-cta {
-      background: var(--green);
+      background: var(--amber);
       color: var(--white) !important;
-      padding: 0.6rem 1.4rem;
+      padding: 0.55rem 1.4rem;
       border-radius: 50px;
-      transition: background var(--transition), transform var(--transition) !important;
+      font-weight: 700 !important;
+      transition: background 0.2s, transform 0.2s !important;
     }
 
-    .nav-cta:hover {
-      background: #225f51 !important;
-      transform: translateY(-1px);
-    }
+    .nav-cta:hover { background: var(--amber-dk) !important; transform: translateY(-1px); }
 
-    /* HERO */
+    .nav-hamburger { display: none; background: none; border: none; cursor: pointer; }
+
+    /* ──────────── HERO ──────────── */
     .hero {
+      position: relative;
       min-height: 100vh;
-      background: linear-gradient(135deg, rgba(46,125,106,0.88) 0%, rgba(30,80,68,0.75) 100%),
-                  url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1600&q=80') center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      padding: 0 5%;
+      display: flex; align-items: center;
+      background: linear-gradient(135deg, rgba(30,92,77,0.82) 0%, rgba(46,125,106,0.6) 100%),
+                  url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      padding: 6rem 2rem 4rem;
     }
 
     .hero-content {
-      max-width: 700px;
+      max-width: 680px;
       color: var(--white);
     }
 
     .hero-badge {
-      display: inline-block;
-      background: rgba(255,255,255,0.18);
-      border: 1px solid rgba(255,255,255,0.35);
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(245,166,35,0.2);
+      border: 1px solid rgba(245,166,35,0.5);
+      color: var(--amber);
+      padding: 0.35rem 1rem;
       border-radius: 50px;
-      padding: 0.4rem 1.1rem;
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
+      font-size: 0.85rem; font-weight: 700;
       margin-bottom: 1.5rem;
-      color: #c8ede4;
+      backdrop-filter: blur(4px);
     }
 
     .hero h1 {
-      font-family: 'Nunito', sans-serif;
-      font-size: clamp(2.4rem, 5vw, 3.6rem);
-      font-weight: 800;
-      line-height: 1.15;
-      margin-bottom: 1.2rem;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 900;
+      margin-bottom: 1.25rem;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--amber);
     }
 
     .hero p {
       font-size: 1.15rem;
-      opacity: 0.9;
-      margin-bottom: 2.2rem;
-      max-width: 520px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      background: var(--white);
-      color: var(--green);
-      font-family: 'Nunito', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      padding: 0.85rem 2rem;
-      border-radius: 50px;
-      text-decoration: none;
-      transition: transform var(--transition), box-shadow var(--transition);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-    }
-
-    .btn-secondary {
-      border: 2px solid rgba(255,255,255,0.7);
-      color: var(--white);
-      font-family: 'Nunito', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      padding: 0.85rem 2rem;
-      border-radius: 50px;
-      text-decoration: none;
-      transition: background var(--transition), border-color var(--transition);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255,255,255,0.15);
-      border-color: white;
-    }
-
-    /* STATS BAR */
-    .stats-bar {
-      background: var(--green);
-      padding: 2rem 5%;
-      display: flex;
-      justify-content: center;
-      gap: 4rem;
-      flex-wrap: wrap;
-    }
-
-    .stat {
-      text-align: center;
-      color: var(--white);
-    }
-
-    .stat-number {
-      font-family: 'Nunito', sans-serif;
-      font-size: 2.2rem;
-      font-weight: 800;
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-size: 0.85rem;
-      opacity: 0.85;
-      margin-top: 0.25rem;
-    }
-
-    /* SECTION BASE */
-    section { padding: 5rem 5%; }
-
-    .section-tag {
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--green);
-      margin-bottom: 0.6rem;
-    }
-
-    .section-title {
-      font-family: 'Nunito', sans-serif;
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
-      font-weight: 800;
-      line-height: 1.2;
-      margin-bottom: 1rem;
-    }
-
-    .section-sub {
-      font-size: 1.05rem;
-      color: var(--text-muted);
+      opacity: 0.92;
+      margin-bottom: 2.5rem;
       max-width: 540px;
     }
 
-    /* SERVICES */
-    .services {
-      background: var(--green-light);
+    .hero-btns {
+      display: flex; flex-wrap: wrap; gap: 1rem;
     }
 
-    .services-header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-
-    .services-header .section-sub {
-      margin: 0 auto;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .service-card {
-      background: var(--white);
-      border-radius: 16px;
-      padding: 2rem;
-      transition: transform var(--transition), box-shadow var(--transition);
-      border: 1px solid rgba(46,125,106,0.1);
-    }
-
-    .service-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(46,125,106,0.12);
-    }
-
-    .service-icon {
-      width: 48px;
-      height: 48px;
-      background: var(--green-light);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.2rem;
-    }
-
-    .service-icon svg {
-      width: 26px;
-      height: 26px;
-      stroke: var(--green);
-      fill: none;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .service-card h3 {
+    .btn-primary {
+      background: var(--amber);
+      color: var(--white);
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
       font-family: 'Nunito', sans-serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-      margin-bottom: 0.6rem;
+      font-weight: 800;
+      font-size: 1rem;
+      border: none; cursor: pointer;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(245,166,35,0.45);
+      display: inline-block;
     }
 
-    .service-card p {
-      font-size: 0.92rem;
-      color: var(--text-muted);
-      line-height: 1.6;
+    .btn-primary:hover {
+      background: var(--amber-dk);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(245,166,35,0.55);
     }
 
-    /* WHY US */
-    .why-us {
-      display: flex;
-      align-items: center;
-      gap: 5rem;
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      border: 2px solid rgba(255,255,255,0.6);
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .hero-stats {
+      display: flex; gap: 2.5rem; margin-top: 3.5rem;
       flex-wrap: wrap;
     }
 
-    .why-image {
-      flex: 1 1 380px;
-      border-radius: 20px;
-      overflow: hidden;
-      max-height: 500px;
-    }
-
-    .why-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .hero-stat strong {
       display: block;
+      font-size: 2rem; font-family: 'Nunito', sans-serif; font-weight: 900;
+      color: var(--amber);
     }
 
-    .why-content {
-      flex: 1 1 340px;
+    .hero-stat span { font-size: 0.85rem; opacity: 0.85; }
+
+    /* ──────────── SECTIONS SHARED ──────────── */
+    section { padding: 5rem 1.5rem; }
+
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      display: inline-block;
+      background: var(--mint);
+      color: var(--teal);
+      font-weight: 700; font-size: 0.8rem;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 0.3rem 1rem; border-radius: 50px;
+      margin-bottom: 1rem;
     }
 
-    .why-list {
-      list-style: none;
-      margin-top: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 1rem;
     }
 
-    .why-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
+    .section-subtitle {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 560px;
     }
 
-    .why-check {
-      width: 36px;
-      height: 36px;
-      background: var(--green-light);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
+    .section-header { margin-bottom: 3.5rem; }
+
+    /* ──────────── TRATAMIENTOS ──────────── */
+    #tratamientos { background: var(--grey); }
+
+    .treatments-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
     }
 
-    .why-check svg {
-      width: 18px;
-      height: 18px;
-      stroke: var(--green);
-      fill: none;
-      stroke-width: 2.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .why-item-text h4 {
-      font-family: 'Nunito', sans-serif;
-      font-weight: 700;
-      margin-bottom: 0.2rem;
-    }
-
-    .why-item-text p {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
-    /* TESTIMONIALS */
-    .testimonials {
-      background: var(--green-light);
+    .treatment-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
       text-align: center;
+      border: 2px solid transparent;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+      cursor: default;
     }
 
-    .testimonials-header {
-      margin-bottom: 3rem;
+    .treatment-card:hover {
+      border-color: var(--teal);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 36px rgba(46,125,106,0.12);
     }
+
+    .treatment-icon {
+      width: 64px; height: 64px;
+      background: var(--mint);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.2rem;
+    }
+
+    .treatment-icon svg { width: 30px; height: 30px; stroke: var(--teal); fill: none; stroke-width: 1.8; }
+
+    .treatment-card h3 {
+      font-size: 1.05rem; font-weight: 800;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+
+    .treatment-card p { font-size: 0.9rem; color: var(--muted); }
+
+    /* ──────────── CÓMO FUNCIONA ──────────── */
+    #como-funciona { background: var(--white); }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      position: relative;
+    }
+
+    .step-card {
+      background: var(--mint);
+      border-radius: 24px;
+      padding: 2.5rem 2rem;
+      position: relative;
+    }
+
+    .step-number {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: 3.5rem;
+      color: var(--teal);
+      opacity: 0.15;
+      position: absolute;
+      top: 1rem; right: 1.5rem;
+      line-height: 1;
+    }
+
+    .step-card h3 { font-size: 1.25rem; font-weight: 800; margin-bottom: 0.75rem; color: var(--dark); }
+    .step-card p { color: var(--muted); font-size: 0.95rem; }
+
+    /* ──────────── EQUIPO ──────────── */
+    #equipo { background: var(--teal); color: var(--white); }
+
+    #equipo .section-label { background: rgba(255,255,255,0.15); color: var(--white); }
+    #equipo .section-title { color: var(--white); }
+    #equipo .section-subtitle { color: rgba(255,255,255,0.8); }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .team-card {
+      background: rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 2rem;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.15);
+      transition: background 0.25s, transform 0.25s;
+    }
+
+    .team-card:hover {
+      background: rgba(255,255,255,0.14);
+      transform: translateY(-4px);
+    }
+
+    .team-avatar {
+      width: 90px; height: 90px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.2rem;
+      border: 3px solid rgba(255,255,255,0.3);
+      overflow: hidden;
+    }
+
+    .team-avatar svg { width: 42px; height: 42px; stroke: rgba(255,255,255,0.85); fill: none; stroke-width: 1.5; }
+
+    .team-card h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 0.3rem; }
+    .team-card .role { font-size: 0.85rem; color: var(--amber); font-weight: 700; margin-bottom: 0.6rem; }
+    .team-card p { font-size: 0.88rem; color: rgba(255,255,255,0.75); }
+
+    /* ──────────── TESTIMONIOS ──────────── */
+    #testimonios { background: var(--grey); }
 
     .testimonials-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
-      max-width: 1000px;
-      margin: 0 auto;
     }
 
     .testimonial-card {
       background: var(--white);
-      border-radius: 16px;
+      border-radius: 20px;
       padding: 2rem;
-      text-align: left;
-      border: 1px solid rgba(46,125,106,0.1);
+      border: 1px solid #E8F0EE;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+
+    .testimonial-card:hover {
+      box-shadow: 0 8px 32px rgba(46,125,106,0.1);
+      transform: translateY(-3px);
     }
 
     .stars {
-      color: var(--green);
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
-      letter-spacing: 2px;
+      display: flex; gap: 4px; margin-bottom: 1rem;
     }
 
+    .stars svg { width: 18px; height: 18px; fill: var(--amber); }
+
     .testimonial-card p {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      margin-bottom: 1.2rem;
+      font-size: 0.95rem; color: var(--text);
+      line-height: 1.7; margin-bottom: 1.25rem;
       font-style: italic;
     }
 
     .testimonial-author {
-      font-family: 'Nunito', sans-serif;
-      font-weight: 700;
-      font-size: 0.9rem;
+      display: flex; align-items: center; gap: 0.8rem;
     }
 
-    /* CONTACT */
-    .contact {
-      display: flex;
+    .author-avatar {
+      width: 42px; height: 42px;
+      background: var(--mint);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .author-avatar svg { width: 22px; height: 22px; stroke: var(--teal); fill: none; stroke-width: 1.8; }
+
+    .author-name { font-weight: 700; font-size: 0.9rem; color: var(--dark); }
+    .author-meta { font-size: 0.8rem; color: var(--muted); }
+
+    /* ──────────── BOOKING ──────────── */
+    #reservar {
+      background: linear-gradient(135deg, var(--teal-dk) 0%, var(--teal) 100%);
+      color: var(--white);
+    }
+
+    #reservar .section-label { background: rgba(255,255,255,0.15); color: var(--white); }
+    #reservar .section-title { color: var(--white); }
+    #reservar .section-subtitle { color: rgba(255,255,255,0.8); max-width: 600px; }
+
+    .booking-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
       gap: 4rem;
-      flex-wrap: wrap;
-      align-items: flex-start;
+      align-items: start;
     }
 
-    .contact-info {
-      flex: 1 1 300px;
+    .booking-info h3 {
+      font-size: 1.2rem; font-weight: 800;
+      margin-bottom: 1.5rem;
+      color: var(--amber);
     }
 
-    .contact-info .section-sub {
-      margin-bottom: 2rem;
+    .booking-benefits { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+
+    .booking-benefits li {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      font-size: 0.95rem; color: rgba(255,255,255,0.9);
     }
 
-    .contact-details {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
+    .booking-benefits li svg {
+      width: 20px; height: 20px;
+      stroke: var(--amber); fill: none; stroke-width: 2;
+      flex-shrink: 0; margin-top: 2px;
     }
 
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
+    .booking-contact {
+      margin-top: 2rem;
+      display: flex; flex-direction: column; gap: 0.75rem;
     }
 
-    .contact-item-icon {
-      width: 44px;
-      height: 44px;
-      background: var(--green-light);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .contact-item-icon svg {
-      width: 22px;
-      height: 22px;
-      stroke: var(--green);
-      fill: none;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .contact-item-text {
+    .booking-contact a {
+      display: flex; align-items: center; gap: 0.75rem;
+      color: rgba(255,255,255,0.9);
       font-size: 0.95rem;
+      transition: color 0.2s;
     }
 
-    .contact-item-text strong {
-      display: block;
-      font-family: 'Nunito', sans-serif;
-      font-weight: 700;
-      margin-bottom: 0.1rem;
+    .booking-contact a:hover { color: var(--amber); }
+
+    .booking-contact svg {
+      width: 20px; height: 20px;
+      stroke: var(--amber); fill: none; stroke-width: 2;
     }
 
-    .contact-form {
-      flex: 1 1 340px;
-      background: var(--green-light);
-      border-radius: 20px;
+    .booking-form {
+      background: var(--white);
+      border-radius: 24px;
       padding: 2.5rem;
     }
 
-    .contact-form h3 {
+    .booking-form h3 {
       font-family: 'Nunito', sans-serif;
-      font-weight: 800;
-      font-size: 1.3rem;
+      font-size: 1.3rem; font-weight: 800;
+      color: var(--dark);
       margin-bottom: 1.5rem;
     }
 
-    .form-group {
-      margin-bottom: 1.2rem;
-    }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-full { grid-column: 1/-1; }
+
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
 
     .form-group label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 0.4rem;
-      color: var(--text-dark);
+      font-size: 0.85rem; font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.5px;
     }
 
     .form-group input,
+    .form-group select,
     .form-group textarea {
-      width: 100%;
       padding: 0.75rem 1rem;
-      border: 1.5px solid rgba(46,125,106,0.2);
-      border-radius: 10px;
+      border: 2px solid #E8F0EE;
+      border-radius: 12px;
       font-family: 'Open Sans', sans-serif;
       font-size: 0.95rem;
+      color: var(--dark);
       background: var(--white);
-      transition: border-color var(--transition);
+      transition: border-color 0.2s, box-shadow 0.2s;
       outline: none;
+      width: 100%;
     }
 
     .form-group input:focus,
+    .form-group select:focus,
     .form-group textarea:focus {
-      border-color: var(--green);
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(46,125,106,0.1);
     }
 
-    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-group textarea { resize: vertical; min-height: 90px; }
 
-    .btn-form {
-      width: 100%;
-      background: var(--green);
+    .form-submit {
+      width: 100%; margin-top: 0.5rem;
+      background: var(--amber);
       color: var(--white);
+      border: none; cursor: pointer;
+      padding: 1rem;
+      border-radius: 14px;
       font-family: 'Nunito', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      padding: 0.9rem;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: background var(--transition), transform var(--transition);
+      font-weight: 800; font-size: 1.05rem;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 16px rgba(245,166,35,0.35);
     }
 
-    .btn-form:hover {
-      background: #225f51;
-      transform: translateY(-1px);
+    .form-submit:hover {
+      background: var(--amber-dk);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(245,166,35,0.45);
     }
 
-    /* FOOTER */
+    .form-note {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.75rem;
+    }
+
+    /* ──────────── CONTACTO ──────────── */
+    #contacto { background: var(--white); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+    }
+
+    .contact-card {
+      background: var(--mint);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(46,125,106,0.12);
+    }
+
+    .contact-icon {
+      width: 56px; height: 56px;
+      background: var(--teal);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem;
+    }
+
+    .contact-icon svg { width: 26px; height: 26px; stroke: var(--white); fill: none; stroke-width: 2; }
+
+    .contact-card h3 { font-size: 0.85rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.4rem; }
+    .contact-card p, .contact-card a { font-size: 1rem; font-weight: 600; color: var(--dark); display: block; }
+    .contact-card a:hover { color: var(--teal); }
+
+    /* ──────────── FOOTER ──────────── */
     footer {
-      background: var(--text-dark);
+      background: var(--dark);
       color: rgba(255,255,255,0.7);
       text-align: center;
-      padding: 2rem 5%;
-      font-size: 0.9rem;
+      padding: 2rem 1.5rem;
+      font-size: 0.88rem;
     }
 
-    footer a { color: rgba(255,255,255,0.7); text-decoration: none; }
-    footer strong { color: var(--white); }
+    footer strong { color: var(--amber); }
 
-    /* RESPONSIVE */
+    /* ──────────── FLOATING CTA ──────────── */
+    .float-cta {
+      position: fixed;
+      bottom: 2rem; right: 2rem;
+      background: var(--amber);
+      color: var(--white);
+      padding: 1rem 1.6rem;
+      border-radius: 50px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.95rem;
+      box-shadow: 0 6px 28px rgba(245,166,35,0.5);
+      z-index: 99;
+      transition: background 0.2s, transform 0.2s;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+
+    .float-cta:hover { background: var(--amber-dk); transform: translateY(-3px); }
+
+    .float-cta svg { width: 20px; height: 20px; stroke: var(--white); fill: none; stroke-width: 2; }
+
+    /* ──────────── RESPONSIVE ──────────── */
     @media (max-width: 768px) {
       .nav-links { display: none; }
-      .stats-bar { gap: 2rem; }
-      .why-us { gap: 2.5rem; }
-      .contact { gap: 2.5rem; }
+      .nav-hamburger { display: flex; }
+
+      .hero { padding: 7rem 1.5rem 3rem; }
+
+      .booking-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .booking-info { order: 2; }
+      .booking-form { order: 1; }
+
+      .form-grid { grid-template-columns: 1fr; }
+      .form-full { grid-column: 1; }
+
+      .hero-stats { gap: 1.5rem; }
+
+      .float-cta { bottom: 1rem; right: 1rem; padding: 0.8rem 1.2rem; font-size: 0.88rem; }
+    }
+
+    /* ──────────── SCROLL ANIMATION ──────────── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
@@ -555,219 +616,425 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo">Osteo<span>pazzia</span></a>
+    <div class="nav-logo">Osteo<span>pazzia</span></div>
     <ul class="nav-links">
-      <li><a href="#servicios">Servicios</a></li>
-      <li><a href="#nosotros">Nosotros</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-      <li><a href="tel:+34622636708" class="nav-cta">Reservar cita</a></li>
+      <li><a href="#tratamientos">Tratamientos</a></li>
+      <li><a href="#como-funciona">Cómo Funciona</a></li>
+      <li><a href="#equipo">Equipo</a></li>
+      <li><a href="#testimonios">Opiniones</a></li>
+      <li><a href="#reservar" class="nav-cta">Reservar Cita</a></li>
     </ul>
+    <button class="nav-hamburger" onclick="document.querySelector('.nav-links').style.display = document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex'; document.querySelector('.nav-links').style.flexDirection='column'; document.querySelector('.nav-links').style.position='absolute'; document.querySelector('.nav-links').style.top='100%'; document.querySelector('.nav-links').style.left='0'; document.querySelector('.nav-links').style.right='0'; document.querySelector('.nav-links').style.background='white'; document.querySelector('.nav-links').style.padding='1.5rem 2rem'; document.querySelector('.nav-links').style.gap='1rem'; document.querySelector('.nav-links').style.boxShadow='0 8px 24px rgba(0,0,0,0.1)';" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2E7D6A" stroke-width="2.5" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
   </nav>
 
   <!-- HERO -->
   <section class="hero" id="inicio">
-    <div class="hero-content">
-      <div class="hero-badge">Fisioterapia · Osteopatía · Madrid</div>
-      <h1>Tu cuerpo merece un tratamiento de verdad</h1>
-      <p>Fisioterapia y osteopatía especializada para recuperar tu movilidad, eliminar el dolor y volver a moverte con libertad.</p>
-      <div class="hero-actions">
-        <a href="tel:+34622636708" class="btn-primary">Reservar cita ahora</a>
-        <a href="#servicios" class="btn-secondary">Ver tratamientos</a>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Fisioterapia & Osteopatía en Madrid
+        </div>
+        <h1>Recupera tu <em>Movimiento</em>,<br>Vive sin Dolor</h1>
+        <p>Tratamientos personalizados de fisioterapia y osteopatía para devolverte la libertad de movimiento. Primera consulta de valoración gratuita.</p>
+        <div class="hero-btns">
+          <a href="#reservar" class="btn-primary">Reservar Cita Online</a>
+          <a href="tel:+34622636708" class="btn-outline">Primera Consulta Gratis</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <strong>+500</strong>
+            <span>Pacientes tratados</span>
+          </div>
+          <div class="hero-stat">
+            <strong>8+</strong>
+            <span>Años de experiencia</span>
+          </div>
+          <div class="hero-stat">
+            <strong>98%</strong>
+            <span>Satisfacción</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- STATS BAR -->
-  <div class="stats-bar">
-    <div class="stat">
-      <div class="stat-number">+2.000</div>
-      <div class="stat-label">Pacientes tratados</div>
-    </div>
-    <div class="stat">
-      <div class="stat-number">10+</div>
-      <div class="stat-label">Años de experiencia</div>
-    </div>
-    <div class="stat">
-      <div class="stat-number">98%</div>
-      <div class="stat-label">Satisfacción de pacientes</div>
-    </div>
-    <div class="stat">
-      <div class="stat-number">48h</div>
-      <div class="stat-label">Primera cita disponible</div>
-    </div>
-  </div>
+  <!-- TRATAMIENTOS -->
+  <section id="tratamientos">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Nuestros Servicios</span>
+        <h2 class="section-title">Tratamientos Especializados</h2>
+        <p class="section-subtitle">Abordamos cada caso desde múltiples disciplinas para ofrecerte el tratamiento más efectivo y duradero.</p>
+      </div>
+      <div class="treatments-grid">
 
-  <!-- SERVICES -->
-  <section class="services" id="servicios">
-    <div class="services-header">
-      <div class="section-tag">Nuestros tratamientos</div>
-      <h2 class="section-title">Soluciones para cada tipo de dolor</h2>
-      <p class="section-sub">Desde lesiones deportivas hasta problemas posturales crónicos, tenemos el tratamiento adecuado para ti.</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        <div class="treatment-card fade-in">
+          <div class="treatment-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 1 0 0 10A5 5 0 0 0 12 2z"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          </div>
+          <h3>Fisioterapia General</h3>
+          <p>Evaluación y tratamiento de lesiones musculoesqueléticas, recuperación funcional y alivio del dolor.</p>
         </div>
-        <h3>Fisioterapia Manual</h3>
-        <p>Técnicas manuales especializadas para aliviar dolor muscular, articular y mejorar la movilidad funcional.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+
+        <div class="treatment-card fade-in">
+          <div class="treatment-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2"/><path d="M12 7v10M9 10l3-3 3 3M9 17l3 3 3-3"/></svg>
+          </div>
+          <h3>Osteopatía</h3>
+          <p>Técnicas manuales globales para restablecer el equilibrio del sistema musculoesquelético, visceral y craneal.</p>
         </div>
-        <h3>Osteopatía</h3>
-        <p>Tratamiento global del cuerpo para restablecer el equilibrio estructural y funcional de manera natural.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24"><path d="M4 12h16M4 6h16M4 18h7"/></svg>
+
+        <div class="treatment-card fade-in">
+          <div class="treatment-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8-8-3.6-8-8z"/><path d="M8 12s1.5-2 4-2 4 2 4 2"/><path d="M8 16s1.5-2 4-2 4 2 4 2"/></svg>
+          </div>
+          <h3>Masajes Terapéuticos</h3>
+          <p>Masaje descontracturante, drenaje linfático y técnicas de relajación muscular profunda.</p>
         </div>
-        <h3>Rehabilitación Deportiva</h3>
-        <p>Recuperación de lesiones para deportistas. Vuelve a tu rendimiento óptimo de forma segura y rápida.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+
+        <div class="treatment-card fade-in">
+          <div class="treatment-icon">
+            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <h3>Fisioterapia Deportiva</h3>
+          <p>Prevención y recuperación de lesiones deportivas. Vuelta al rendimiento óptimo de forma segura.</p>
         </div>
-        <h3>Corrección Postural</h3>
-        <p>Análisis y tratamiento de problemas posturales para prevenir lesiones y mejorar tu calidad de vida diaria.</p>
+
+        <div class="treatment-card fade-in">
+          <div class="treatment-icon">
+            <svg viewBox="0 0 24 24"><path d="M9 9a3 3 0 1 1 6 0c0 2-3 3-3 3"/><circle cx="12" cy="19" r="1"/><path d="M12 12v4"/></svg>
+          </div>
+          <h3>Fisioterapia Neurológica</h3>
+          <p>Rehabilitación especializada para patologías neurológicas: ictus, Parkinson, esclerosis múltiple y más.</p>
+        </div>
+
+        <div class="treatment-card fade-in">
+          <div class="treatment-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 12h8M12 8v8"/></svg>
+          </div>
+          <h3>Primera Consulta Gratis</h3>
+          <p>Valoración inicial sin coste para conocer tu caso, diseñar tu plan de tratamiento personalizado.</p>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- WHY US -->
-  <section id="nosotros">
-    <div class="why-us">
-      <div class="why-image">
-        <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=80" alt="Tratamiento de fisioterapia" loading="lazy" />
+  <!-- CÓMO FUNCIONA -->
+  <section id="como-funciona">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">El Proceso</span>
+        <h2 class="section-title">Cómo Te Ayudamos</h2>
+        <p class="section-subtitle">Un proceso sencillo, claro y centrado en ti. En tres pasos te ponemos en el camino hacia el bienestar.</p>
       </div>
-      <div class="why-content">
-        <div class="section-tag">Por qué elegirnos</div>
-        <h2 class="section-title">Fisioterapia que realmente funciona</h2>
-        <p class="section-sub">Combinamos técnicas de última generación con un trato cercano y personalizado.</p>
-        <ul class="why-list">
-          <li class="why-item">
-            <div class="why-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <div class="why-item-text">
-              <h4>Profesionales certificados</h4>
-              <p>Fisioterapeutas y osteópatas colegiados con formación continua y especializada.</p>
-            </div>
-          </li>
-          <li class="why-item">
-            <div class="why-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <div class="why-item-text">
-              <h4>Tratamiento individualizado</h4>
-              <p>Cada paciente recibe un plan personalizado según su diagnóstico y objetivos.</p>
-            </div>
-          </li>
-          <li class="why-item">
-            <div class="why-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <div class="why-item-text">
-              <h4>Resultados desde la primera sesión</h4>
-              <p>Notarás mejoría real desde el inicio del tratamiento, no al cabo de semanas.</p>
-            </div>
-          </li>
-          <li class="why-item">
-            <div class="why-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <div class="why-item-text">
-              <h4>Instalaciones modernas</h4>
-              <p>Equipamiento de última generación en un entorno tranquilo y profesional en Madrid.</p>
-            </div>
-          </li>
-        </ul>
+      <div class="steps-grid">
+        <div class="step-card fade-in">
+          <span class="step-number">01</span>
+          <h3>Consulta Inicial</h3>
+          <p>Reserva tu cita online o por teléfono. Primera valoración gratuita donde analizamos tu caso en detalle y escuchamos tus objetivos.</p>
+        </div>
+        <div class="step-card fade-in">
+          <span class="step-number">02</span>
+          <h3>Diagnóstico Personalizado</h3>
+          <p>Evaluación completa de tu condición para identificar el origen del problema y definir el plan de tratamiento más adecuado para ti.</p>
+        </div>
+        <div class="step-card fade-in">
+          <span class="step-number">03</span>
+          <h3>Tratamiento y Seguimiento</h3>
+          <p>Sesiones de tratamiento ajustadas a tu evolución con seguimiento continuo hasta alcanzar tus metas de movilidad y bienestar.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
-  <section class="testimonials">
-    <div class="testimonials-header">
-      <div class="section-tag">Testimonios</div>
-      <h2 class="section-title">Lo que dicen nuestros pacientes</h2>
-    </div>
-    <div class="testimonials-grid">
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <p>"Llevaba meses con dolor de espalda y tras 4 sesiones estoy como nuevo. El trato es excelente y los resultados son increíbles."</p>
-        <span class="testimonial-author">— Carlos M., Madrid</span>
+  <!-- EQUIPO -->
+  <section id="equipo">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Nuestro Equipo</span>
+        <h2 class="section-title">Profesionales a Tu Servicio</h2>
+        <p class="section-subtitle">Fisioterapeutas y osteópatas colegiados con formación continua y vocación de cuidar.</p>
       </div>
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <p>"Me lesioné la rodilla corriendo y en 6 semanas volví a entrenar. El equipo es muy profesional y el seguimiento impecable."</p>
-        <span class="testimonial-author">— Laura P., Vallecas</span>
-      </div>
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <p>"La osteopatía me cambió la vida. Tenía contracturas crónicas y ahora me encuentro fenomenal. 100% recomendable."</p>
-        <span class="testimonial-author">— Roberto F., Madrid</span>
+      <div class="team-grid">
+
+        <div class="team-card fade-in">
+          <div class="team-avatar">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          </div>
+          <h3>Fisioterapeuta Principal</h3>
+          <div class="role">Fisioterapeuta & Osteópata</div>
+          <p>Especialista en patología musculoesquelética y osteopatía estructural. Máster en Osteopatía.</p>
+        </div>
+
+        <div class="team-card fade-in">
+          <div class="team-avatar">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          </div>
+          <h3>Fisioterapeuta Deportivo</h3>
+          <div class="role">Fisioterapia Deportiva</div>
+          <p>Experto en lesiones deportivas y readaptación funcional. Colaborador de equipos deportivos de Madrid.</p>
+        </div>
+
+        <div class="team-card fade-in">
+          <div class="team-avatar">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          </div>
+          <h3>Fisioterapeuta Neurológica</h3>
+          <div class="role">Neurorrehabilitación</div>
+          <p>Especializada en rehabilitación neurológica con técnicas Bobath y Perfetti. Atención cercana y personalizada.</p>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section id="contacto">
-    <div class="contact">
-      <div class="contact-info">
-        <div class="section-tag">Contacto</div>
-        <h2 class="section-title">Reserva tu cita hoy</h2>
-        <p class="section-sub">Primera visita con valoración gratuita. Llámanos o escríbenos y te atendemos en menos de 24 horas.</p>
-        <div class="contact-details">
-          <div class="contact-item">
-            <div class="contact-item-icon">
-              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.29h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.96-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2z"/></svg>
+  <!-- TESTIMONIOS -->
+  <section id="testimonios">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Opiniones</span>
+        <h2 class="section-title">Lo Que Dicen Nuestros Pacientes</h2>
+        <p class="section-subtitle">La mejor validación es la experiencia real de quienes ya recuperaron su movimiento.</p>
+      </div>
+      <div class="testimonials-grid">
+
+        <div class="testimonial-card fade-in">
+          <div class="stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p>"Llevaba meses con dolor lumbar crónico y en 6 sesiones noté un cambio radical. El equipo es muy profesional y cercano. ¡Totalmente recomendable!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
             </div>
-            <div class="contact-item-text">
-              <strong>Teléfono</strong>
+            <div>
+              <div class="author-name">María G.</div>
+              <div class="author-meta">Dolor lumbar crónico</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-in">
+          <div class="stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p>"Me operaron de la rodilla y vine a rehabilitación. En tres meses volví a correr. El tratamiento fue progresivo y siempre sentí que estaba en buenas manos."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            </div>
+            <div>
+              <div class="author-name">Carlos M.</div>
+              <div class="author-meta">Rehabilitación postquirúrgica</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-in">
+          <div class="stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p>"Fui por cervicalgia y contracturas de trabajo de oficina. Las sesiones de osteopatía me cambiaron la vida. Ahora vengo mensualmente de mantenimiento."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            </div>
+            <div>
+              <div class="author-name">Ana R.</div>
+              <div class="author-meta">Cervicalgia & osteopatía</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section id="reservar">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Cita Online</span>
+        <h2 class="section-title">Reserva Tu Cita</h2>
+        <p class="section-subtitle">Primera consulta de valoración completamente gratuita. Sin compromiso. Elige el horario que mejor se adapte a ti.</p>
+      </div>
+      <div class="booking-grid">
+        <div class="booking-info fade-in">
+          <h3>Por qué elegirnos</h3>
+          <ul class="booking-benefits">
+            <li>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Primera consulta de valoración gratuita y sin compromiso
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Tratamientos personalizados según tu caso específico
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Equipo multidisciplinar de fisioterapeutas colegiados
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Horarios flexibles de mañana y tarde en Madrid
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Seguimiento continuo de tu evolución
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Instalaciones modernas y equipamiento de última generación
+            </li>
+          </ul>
+          <div class="booking-contact">
+            <a href="tel:+34622636708">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.35 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6.29 6.29l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
               +34 622 636 708
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-item-icon">
+            </a>
+            <a href="mailto:info@osteopazzia.com">
               <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            </div>
-            <div class="contact-item-text">
-              <strong>Email</strong>
               info@osteopazzia.com
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-item-icon">
-              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </div>
-            <div class="contact-item-text">
-              <strong>Ubicación</strong>
-              Madrid, España
-            </div>
+            </a>
           </div>
         </div>
+
+        <div class="booking-form fade-in">
+          <h3>Solicitar Cita</h3>
+          <form onsubmit="handleSubmit(event)">
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Nombre *</label>
+                <input type="text" placeholder="Tu nombre" required />
+              </div>
+              <div class="form-group">
+                <label>Teléfono *</label>
+                <input type="tel" placeholder="+34 600 000 000" required />
+              </div>
+              <div class="form-group form-full">
+                <label>Email</label>
+                <input type="email" placeholder="tu@email.com" />
+              </div>
+              <div class="form-group form-full">
+                <label>Tratamiento *</label>
+                <select required>
+                  <option value="">Selecciona un servicio</option>
+                  <option>Primera Consulta (Gratuita)</option>
+                  <option>Fisioterapia General</option>
+                  <option>Osteopatía</option>
+                  <option>Fisioterapia Deportiva</option>
+                  <option>Masaje Terapéutico</option>
+                  <option>Fisioterapia Neurológica</option>
+                  <option>Drenaje Linfático</option>
+                </select>
+              </div>
+              <div class="form-group form-full">
+                <label>Preferencia de fecha</label>
+                <input type="date" min="" />
+              </div>
+              <div class="form-group form-full">
+                <label>Cuéntanos tu caso (opcional)</label>
+                <textarea placeholder="Describe brevemente tu lesión o molestia para que podamos preparar tu visita..."></textarea>
+              </div>
+            </div>
+            <button type="submit" class="form-submit">Solicitar Cita Gratuita</button>
+            <p class="form-note">Te contactaremos en menos de 24h para confirmar tu cita</p>
+          </form>
+        </div>
       </div>
-      <div class="contact-form">
-        <h3>Solicitar cita</h3>
-        <form>
-          <div class="form-group">
-            <label>Nombre completo</label>
-            <input type="text" placeholder="Tu nombre" />
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Contacto</span>
+        <h2 class="section-title">Encuéntranos en Madrid</h2>
+        <p class="section-subtitle">Estamos aquí para ayudarte. Contáctanos por el canal que prefieras.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card fade-in">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.35 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.128.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6.29 6.29l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.572 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           </div>
-          <div class="form-group">
-            <label>Teléfono</label>
-            <input type="tel" placeholder="+34 600 000 000" />
+          <h3>Teléfono</h3>
+          <a href="tel:+34622636708">+34 622 636 708</a>
+        </div>
+        <div class="contact-card fade-in">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           </div>
-          <div class="form-group">
-            <label>Motivo de la consulta</label>
-            <textarea placeholder="Describe brevemente tu problema o dolor..."></textarea>
+          <h3>Email</h3>
+          <a href="mailto:info@osteopazzia.com">info@osteopazzia.com</a>
+        </div>
+        <div class="contact-card fade-in">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           </div>
-          <button type="submit" class="btn-form">Solicitar cita gratuita</button>
-        </form>
+          <h3>Ubicación</h3>
+          <p>Madrid, España</p>
+        </div>
+        <div class="contact-card fade-in">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3>Horario</h3>
+          <p>Lun–Vie: 9:00–20:00<br>Sáb: 9:00–14:00</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <p><strong>Osteopazzia</strong> · Fisioterapia y Osteopatía en Madrid</p>
-    <p style="margin-top:0.4rem;font-size:0.8rem;">© 2026 Osteopazzia. Demo creada por <a href="#">Kunilingus Agency</a>.</p>
+    <p><strong>Osteopazzia</strong> — Fisioterapia & Osteopatía en Madrid &nbsp;|&nbsp; <a href="tel:+34622636708" style="color:rgba(255,255,255,0.7)">+34 622 636 708</a> &nbsp;|&nbsp; <a href="mailto:info@osteopazzia.com" style="color:rgba(255,255,255,0.7)">info@osteopazzia.com</a></p>
+    <p style="margin-top:0.5rem;font-size:0.8rem;opacity:0.5">© 2026 Osteopazzia. Todos los derechos reservados.</p>
   </footer>
 
+  <!-- FLOATING CTA -->
+  <a href="#reservar" class="float-cta">
+    <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    Reservar Cita
+  </a>
+
+  <script>
+    // Set min date for date input
+    document.querySelector('input[type="date"]').min = new Date().toISOString().split('T')[0];
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Form submit
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.form-submit');
+      btn.textContent = 'Solicitud enviada — Te llamamos pronto';
+      btn.style.background = '#2E7D6A';
+      btn.disabled = true;
+    }
+  </script>
 </body>
 </html>
