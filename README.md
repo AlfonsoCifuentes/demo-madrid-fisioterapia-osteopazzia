@@ -39,7 +39,7 @@ La web esta pensada para trasladar cercania profesional, orden informativo y fac
 | Complejidad | Beginner |
 | Lenguaje principal | HTML |
 | Primera version | 9 de mayo de 2026 |
-| Ultima actualizacion | 14 de mayo de 2026 |
+| Ultima actualizacion | 21 de mayo de 2026 |
 
 ## Enlaces
 
